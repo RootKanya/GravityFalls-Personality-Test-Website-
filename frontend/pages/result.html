@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Result — Chiper's</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .result-image {
+        height: 220px;
+        width: auto;
+        display: block;
+        margin: 20px auto;
+        filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.2));
+        transition: transform 0.3s;
+    }
+    .result-image:hover {
+        transform: scale(1.05) rotate(2deg);
+    }
+    .persona-title {
+        color: var(--accent);
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-center">
+    <div class="panel result-panel">
+      
+      <h2 style="margin-top:0; color: #8b949e; font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">
+        <span id="userDisplay">User Persona</span>
+      </h2>
+
+      <img id="resultImg" class="result-image" src="" alt="Loading...">
+
+      <div id="resText" class="result-text">
+        <div id="resultTitle" class="persona-title">Calculating...</div>
+        <p id="resultDesc" style="color: #e6e6e6; line-height: 1.6;">
+            The spirits are consulting the journals...
+        </p>
+      </div>
+
+      <div style="text-align:center; margin-top:30px; border-top: 1px solid #30363d; padding-top: 20px;">
+        <p style="font-size: 0.9rem; color: #8b949e;">Not happy with your destiny?</p>
+        <button class="btn" onclick="location.href='persona.html'">Summon Bill Again (Retake)</button>
+        
+        <br><br>
+        <button id="logoutBtn" class="btn-text">Log Out</button>
+      
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/result.js"></script>
+</body>
+</html>

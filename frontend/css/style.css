@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bg: #1e1e1e;
+  --card-bg: #151b22;
+  --input-bg: #21262d;
+  --text-main: #ffffff;
+  --text-muted: #8b949e;
+  --accent: #58a6ff; /* Dipper Blue */
+  --accent-glow: rgba(88, 166, 255, 0.4);
+  --gold: #ffd700;   /* Bill Cipher Gold */
+}
+
+/* === Global Reset === */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--bg);
+  background-image: radial-gradient(circle at 50% 50%, #2b2b2b 0%, #1a1a1a 100%);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden; /* Prevent scroll on animations */
+}
+
+/* === Centering Wrapper === */
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* === The Main Panel (Card) === */
+.panel {
+  background: var(--card-bg);
+  border: 1px solid #30363d;
+  border-radius: 16px;
+  padding: 40px;
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  text-align: center;
+}
+
+/* === Typography === */
+h2 {
+  font-family: 'Fredoka', sans-serif;
+  margin-top: 0;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* === Forms === */
+input {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  background: var(--input-bg);
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* === Buttons === */
+.btn {
+  background: var(--text-main);
+  color: #000;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: var(--text-muted);
+}
+.btn-secondary:hover {
+  border-color: var(--text-main);
+  color: var(--text-main);
+}
+
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+/* === Login Page Specifics === */
+.char-left, .char-right {
+  position: absolute;
+  bottom: 0;
+  height: 140px;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through */
+}
+/* Use calc to push them slightly outside the card */
+.char-left { left: -60px; }
+.char-right { right: -60px; }
+
+@media (max-width: 600px) {
+  .char-left, .char-right { display: none; } /* Hide on mobile */
+  .panel { padding: 25px; }
+}
+
+.char-right {
+  position: absolute;
+  bottom: 0;
+  height: 140px;
+  right: -140px; /* You don't need to push him as far */
+  
+  /* This puts him behind the grey card */
+  z-index: -1; 
+}
+
+/* You must also ensure the panel background allows layers behind it */
+.panel {
+  /* keep existing styles */
+  position: relative; 
+  z-index: 1; /* This ensures the card sits on top of the characters */
+}
+
+.skip-text {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.skip-link { color: var(--accent); text-decoration: none; }
+
+/* === Animations === */
+@keyframes floaty {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.bill-float {
+  width: 150px;
+  animation: floaty 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px var(--gold));
+  margin-bottom: 20px;
+}
+
+/* === Quiz Options === */
+.option-btn {
+  background: #21262d;
+  padding: 15px;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
+}
+.option-btn:hover {
+  background: #30363d;
+  border-color: var(--accent);
+}
+.option-btn.selected {
+  background: rgba(88, 166, 255, 0.15);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Specific glow for Bill on the Dashboard */
+.bill-glow {
+    /* This creates a strong yellow/gold glow around the PNG transparency */
+    filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6)) drop-shadow(0 0 30px rgba(255, 215, 0, 0.4));
+    max-height: 200px; /* Keep him from getting too huge */
+    width: auto;
+    display: block;
+    margin: 0 auto 20px;
+}
+
+/* Style for the question "Who dares summon me?" */
+.subtitle {
+    color: #ffd700; /* Gold text */
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* === Quiz Card Layout === */
+.quiz-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 24px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.quiz-card {
+  background: #252b33; /* Slightly lighter than bg */
+  border: 2px solid #30363d;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-card img {
+  width: 100%;
+  height: 180px; /* Fixed height for consistency */
+  object-fit: contain; /* Keeps image proportion */
+  margin-bottom: 15px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+  transition: transform 0.3s;
+}
+
+.quiz-card h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #e6e6e6;
+}
+
+/* === Hover & Selected States === */
+.quiz-card:hover {
+  border-color: var(--accent); /* Dipper Blue */
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.quiz-card:hover img {
+  transform: scale(1.05);
+}
+
+.quiz-card.selected {
+  background: rgba(88, 166, 255, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.2);
+}
+
+/* Mobile: Stack them vertically */
+@media (max-width: 700px) {
+  .quiz-grid {
+    grid-template-columns: 1fr;
+  }
+  .quiz-card img {
+    height: 140px;
+  }
+}
+
+/* === Text Only Buttons (Logout / Quit) === */
+.btn-text {
+  background: none;
+  border: none;
+  color: #6c757d; /* Grey color */
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 15px;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+.btn-text:hover {
+  color: #e6e6e6; /* White on hover */
+}
+
+.top-left-nav {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Chiper's</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div class="page-center">
+    <div class="panel login-panel">
+      
+      <h2>Welcome Chiper</h2>
+      <p style="color: var(--text-muted); margin-bottom: 25px;">Enter the Mystery Shack, and find out what kinda chiper are you.</p>
+
+      <form id="authForm" onsubmit="event.preventDefault();">
+        <input id="email" type="email" placeholder="Email Address" required>
+        <input id="password" type="password" placeholder="Password" required>
+
+        <div class="btn-row">
+          <button class="btn" id="loginBtn" type="button">Login</button>
+          <button class="btn btn-secondary" id="signupBtn" type="button">Sign Up</button>
+        </div>
+
+        <div class="skip-text">
+          <span>Just browsing?</span>
+          <a class="skip-link" href="persona.html">Skip to Persona Test →</a>
+        </div>
+      </form>
+
+      <img class="char-left" src="../images/stanford.png" alt="Stanford">
+      <img class="char-right" src="../images/stanly.png" alt="Stanley">
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../js/login.js"></script>
+</body>
+</html>

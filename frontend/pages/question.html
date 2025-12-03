@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Question — Chiper's</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+  <div class="top-left-nav">
+     <button class="btn-text" onclick="location.href='persona.html'">
+       ← I'm tired, go back to Dashboard
+     </button>
+  </div>
+
+  <div class="page-center">
+    <div class="panel" style="max-width: 900px;"> 
+      
+      <h2 style="margin-top:0; color:var(--accent);">Question <span id="qnum">1 / 6</span></h2>
+      <p id="qtext" style="color:#cfcfcf; font-size: 1.2rem; min-height:48px; margin-bottom: 20px;">
+        Loading question...
+      </p>
+
+      <div id="options-container" class="quiz-grid"></div>
+
+      <div style="margin-top:35px; display:flex; justify-content:space-between; width:100%;">
+        <button class="btn btn-secondary small" id="prevBtn">Previous</button>
+        <div class="btn-row" style="margin:0;">
+          <button class="btn btn-secondary small" id="saveBtn">Save</button>
+          <button class="btn small" id="nextBtn">Next</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+<script src="../js/question.js"></script>
+</body>
+</html>
