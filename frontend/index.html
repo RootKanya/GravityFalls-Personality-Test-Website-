@@ -1,21 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <title>Gravity Falls Quiz</title>
+  <style>
+    /* 1. Reset default browser white space */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: #1e1e1e;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+
+    /* 2. The Iframe */
+    #appFrame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* 3. The Click Overlay (New) */
+    #start-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95); /* Almost black */
+      z-index: 9999; /* Sit on top of iframe */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #ffd700; /* Bill Cipher Gold */
+      cursor: pointer;
+      transition: opacity 0.5s ease;
+    }
+
+    #start-overlay h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    
+    #start-overlay p {
+      color: #8b949e;
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
 
   <audio id="bgm" src="sound/ciphersound.mp3" loop></audio>
 
+  <div id="start-overlay">
+    <h1>⚠️ Warning ⚠️</h1>
+    <p>Click anywhere to enter the Mystery Shack...</p>
+  </div>
+
+  <iframe id="appFrame" src="pages/login.html"></iframe>
+
   <script>
     const bgm = document.getElementById("bgm");
+    const overlay = document.getElementById("start-overlay");
 
-    document.addEventListener("click", function start() {
-      bgm.play();
-      document.removeEventListener("click", start);
+    // When the user clicks the black overlay
+    overlay.addEventListener("click", function() {
+      
+      // 1. Play Music
+      bgm.volume = 0.5; // Set volume to 50% (optional)
+      bgm.play().then(() => {
+        console.log("Music started!");
+      }).catch(e => {
+        console.log("Audio permission denied:", e);
+      });
+
+      // 2. Fade out and remove the overlay
+      overlay.style.opacity = "0";
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 500); // Wait for fade out
     });
   </script>
-
-  <iframe id="appFrame" src="pages/login.html" style="width:100%; height:100vh; border:none;"></iframe>
 
 </body>
 </html>

@@ -91,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
             toast(err.message, true);
         } finally {
             setLoading(false);
-            window.parent.document.getElementById("appFrame").src = "pages/home.html";
         }
     });
 });
