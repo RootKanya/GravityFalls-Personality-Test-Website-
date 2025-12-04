@@ -113,7 +113,7 @@ nextBtn.addEventListener('click', () => {
     render();
   } else {
     sessionStorage.setItem('quizAnswers', JSON.stringify(stored));
-    window.location.href = 'result.html';
+    window.parent.document.getElementById("appFrame").src = "pages/result.html";
   }
 });
 
